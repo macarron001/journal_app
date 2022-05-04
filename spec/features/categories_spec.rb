@@ -53,7 +53,7 @@ RSpec.describe "Categories", type: :feature do
 
       click_on 'Destroy this category'
 
-      # expect { category }.to change(Category, :count).by(-1)
+      expect(Category.count).to eq(0)
     end
 
   end
