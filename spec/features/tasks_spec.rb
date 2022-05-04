@@ -36,6 +36,7 @@ RSpec.describe "Tasks", type: :request do
     it 'shows a task page' do
       expect(page).to have_content 'Body'
       expect(page).to have_selector(:link_or_button, "Edit this task")
+      expect(page).to have_selector(:link_or_button, "Delete")
     end
   end
 
@@ -53,6 +54,19 @@ RSpec.describe "Tasks", type: :request do
       
       edited_task = category.tasks.find(task.id)
       expect(edited_task.body).to eq("test")
+    end
+  end
+
+  describe "delete a task" do
+
+    let(:category) { Category.create!(title: "test", description: "description") }
+    let(:task) {category.tasks.create!(body: "task")}
+    before { visit "/categories/#{category.id}/tasks/#{task.id}" }
+    
+    it 'clicks a button' do
+      click_on 'Delete'
+      
+      expect(category.tasks.count).to eq(0)
     end
   end
 

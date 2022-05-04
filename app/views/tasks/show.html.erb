@@ -7,4 +7,11 @@
   </p>
 
 </div>
-<%= link_to "Edit this task", edit_category_task_path(@category) %>
+
+<p>
+  <%= link_to "Edit this task", edit_category_task_path(@category) %>
+</p>
+<p>
+  <%= link_to "Delete", category_task_path(@category), data: { turbo_method: :delete } %>
+</p>
+
