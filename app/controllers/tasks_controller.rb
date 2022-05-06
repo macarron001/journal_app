@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :get_category
+  before_action :get_category, except: [:todays_tasks]
 
   def index
     @tasks = @category.tasks
@@ -41,6 +41,11 @@ class TasksController < ApplicationController
       redirect_to category_tasks_path(@category)
     end
   end
+
+  def todays_tasks(now = Time.now)
+    @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day, now.tomorrow.at_beginning_of_day)
+  end
+  #WHERE CREATED_AT > DAY_START AND CREATED_AT < TOMORROW)
 
   private
 
