@@ -57,9 +57,16 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Capybara::DSL
+  config.include Devise::Test::IntegrationHelpers
+  config.include FactoryBot::Syntax::Methods
+  config.use_transactional_fixtures = true
+
+  FactoryBot.register_strategy(:attr_strat, AttributeStrategy)
 end

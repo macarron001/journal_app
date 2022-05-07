@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :get_category, except: [:todays_tasks]
 
   def index
-    @tasks = @category.tasks
+    @tasks = @category.tasks.where(user_id: current_user.id)
   end
 
   def new
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   end
 
   def todays_tasks(now = Time.now)
-    @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day, now.tomorrow.at_beginning_of_day)
+    @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day, now.tomorrow.at_beginning_of_day).where(user_id: current_user.id)
   end
   #WHERE CREATED_AT > DAY_START AND CREATED_AT < TOMORROW)
 
@@ -54,6 +54,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:body,:category_id)
+    params.require(:task).permit(:body,:category_id,:user_id)
   end
 end

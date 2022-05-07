@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "CategoriesControllers", type: :request do
   describe "GET/categories/new" do
+    before do
+      sign_in create(:user)
+    end
+
     it "returns the new page" do
       get "/categories/new"
 
@@ -11,6 +15,10 @@ RSpec.describe "CategoriesControllers", type: :request do
 
   #POST Category
   describe "POST/categories" do
+    before do
+      sign_in create(:user)
+    end
+
     it "creates a new category" do
       
       expect { post "/categories", params: {category: {title: "New Category", description: "HINDI KASI NAKA RTX"}} }.to \
@@ -22,6 +30,10 @@ RSpec.describe "CategoriesControllers", type: :request do
   end
   #Edit Category
   describe "GET/categories/1/edit" do
+    before do
+      sign_in create(:user)
+    end
+
     it "returns the edit page" do
       category = Category.create!({title: "New Category", description: "HINDI KASI NAKA RTX"})
       get "/categories/#{category.id}/edit"
@@ -32,6 +44,10 @@ RSpec.describe "CategoriesControllers", type: :request do
 
   #Update Category
   describe "PATCH/categories/1/edit" do
+    before do
+      sign_in create(:user)
+    end
+
     it "updates the category" do
       category = Category.create!({title: "New Category", description: "HINDI KASI NAKA RTX"})
       
@@ -45,6 +61,10 @@ RSpec.describe "CategoriesControllers", type: :request do
   
   #Show Category
   describe "GET/categories/1" do
+    before do
+      sign_in create(:user)
+    end
+    
     it "returns the category details page" do
       category = Category.create!({title: "New Category", description: "HINDI KASI NAKA RTX"})
       get "/categories/#{category.id}"

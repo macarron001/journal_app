@@ -4,6 +4,10 @@ RSpec.describe "Tasks", type: :request do
 
   describe "visit new task page" do
 
+    before do
+      sign_in create(:user)
+    end
+
     let(:category) { Category.create!(title: "title", description: "description") }
     before { visit "/categories/#{category.id}/tasks/new" }
     
@@ -14,6 +18,10 @@ RSpec.describe "Tasks", type: :request do
   end
 
   describe "create a new task" do
+
+    before do
+      sign_in create(:user)
+    end
 
     let(:category) { Category.create!(title: "title", description: "description") }
     before { visit "/categories/#{category.id}/tasks/new" }
@@ -29,8 +37,12 @@ RSpec.describe "Tasks", type: :request do
 
   describe "show a task" do
 
+    before do
+      sign_in create(:user)
+    end
+
     let(:category) { Category.create!(title: "title", description: "description") }
-    let(:task) {category.tasks.create!(body: "task")}
+    let(:task) {category.tasks.create!(body: "task", user: User.first) }
     before { visit "/categories/#{category.id}/tasks/#{task.id}" }
     
     it 'shows a task page' do
@@ -42,8 +54,12 @@ RSpec.describe "Tasks", type: :request do
 
   describe "edit a task" do
 
+    before do
+      sign_in create(:user)
+    end
+
     let(:category) { Category.create!(title: "title", description: "description") }
-    let(:task) {category.tasks.create!(body: "task")}
+    let(:task) {category.tasks.create!(body: "task", user: User.first)}
     before { visit "/categories/#{category.id}/tasks/#{task.id}/edit" }
     
     it 'submits a form' do
@@ -59,8 +75,12 @@ RSpec.describe "Tasks", type: :request do
 
   describe "delete a task" do
 
+    before do
+      sign_in create(:user)
+    end
+
     let(:category) { Category.create!(title: "test", description: "description") }
-    let(:task) {category.tasks.create!(body: "task")}
+    let(:task) {category.tasks.create!(body: "task", user: User.first)}
     before { visit "/categories/#{category.id}/tasks/#{task.id}" }
     
     it 'clicks a button' do

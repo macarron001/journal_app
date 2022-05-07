@@ -11,4 +11,9 @@
   <% end %>
 </div>
 
-<%= link_to "New category", new_category_path %>
+<%= link_to "New category", new_category_path %></br></br>
+
+<%= link_to "Check Tasks", '/todays_tasks' %></br></br>
+
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>
+

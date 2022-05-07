@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get '/todays_tasks' => 'tasks#todays_tasks'
   resources :categories do
     resources :tasks
   end
+  devise_for :users
   
-  get '/todays_tasks' => 'tasks#todays_tasks'
 end

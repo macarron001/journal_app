@@ -27,6 +27,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'devise'
+gem 'factory_bot_rails'
+gem 'faker'
 gem 'rails-erd', group: :development
 gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
 

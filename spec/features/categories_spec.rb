@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Categories", type: :feature do
   describe "View new category page" do
+    before do
+      sign_in create(:user)
+    end
+
     before { visit new_category_path }
 
     it 'shows a new page' do
@@ -12,6 +16,10 @@ RSpec.describe "Categories", type: :feature do
   end
 
   describe "fill up form and submit" do
+    before do
+      sign_in create(:user)
+    end
+
     before { visit new_category_path }
 
 
@@ -22,11 +30,15 @@ RSpec.describe "Categories", type: :feature do
         click_on "Create Category"
       end
 
-      expect(page).to have_content "New Category"
+      expect(page).to have_content "Categories"
     end
   end
 
   describe "edit a category" do
+    
+    before do
+      sign_in create(:user)
+    end
 
     let(:category) { Category.create!(title: "test", description: "hehe") }
     before { visit "/categories/#{category.id}/edit" }
@@ -44,6 +56,10 @@ RSpec.describe "Categories", type: :feature do
   end
 
   describe "delete a category" do
+
+    before do
+      sign_in create(:user)
+    end
 
     let(:category) { Category.create!(title: "test", description: "hehe") }
     before { visit "/categories/#{category.id}" }
