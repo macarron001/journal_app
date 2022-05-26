@@ -1,14 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-<h1>Tasks for Category <%= @category.id %></h1>
+<br/>
+<br/>
+<div class="container">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
 
-<div id="tasks">
-  <% @tasks.each do |task| %>
-    <%= render task %>
-    <p>
-      <%= link_to "Show this task", category_task_path(@category, task.id) %>
-    </p>
-  <% end %>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr scope="row">
+          <td><%= task.body %></td>
+          <td><%= task.created_at.strftime("%F")%></td>
+          <td><%= link_to "Show", category_task_path(@category, task.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br/>
+  <div class="d-flex justify-content-end">
+    <%= link_to "Add a note", new_category_task_path(@category), id:"btn-category-index", class:"btn btn-outline-secondary m-1" %>
+    <%= link_to "Return", category_path(@category), id:"btn-category-index", class:"btn btn-outline-secondary m-1" %>
+  </div>
 </div>
-
-<%= link_to 'Add Task', new_category_task_path(@category) %>

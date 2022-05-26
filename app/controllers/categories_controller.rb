@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order('id DESC')
     # @categories = Category.find(1).tasks.where(user_id: current_user.id)
   end
   
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update!(category_params)
-      redirect_to "/categories"
+      redirect_to "/categories/#{@category.id}"
     end
   end
 

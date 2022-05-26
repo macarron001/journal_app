@@ -1,4 +1,3 @@
-New Category
 <%= form_with(model: @category) do |form| %>
   <% if @category.errors.any? %>
     <div style="color: red">
@@ -12,18 +11,14 @@ New Category
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title, required: true %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
+  <div class="container mt-4">
+    <div class="form-group mb-3">
+      <%= form.text_area :description,placeholder: "Write your thoughts here...", class:"form-control", id:"text-area" %>
+    </div>
 
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <div>
+      <%= form.submit %>
+    </div>
+    </div>
 <% end %>

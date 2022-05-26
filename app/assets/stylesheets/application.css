@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+   background-color: rgba(250, 235, 215, 0.06);
+ }
+
+ a {
+   text-decoration: none;
+ }
+
+ .table td {
+  text-align: center;
+  }
+
+.table th {
+  text-align: center;
+  }
+
+#category-show-wrapper {
+  margin-top: 3rem;
+}
+
+#card-header {
+  border-bottom: solid rgba(0, 0, 0, 0.265) 1px;
+}
+
+#entry-content {
+  font-family:cursive;
+}
+
+#edit-entry-link {
+  display: block;
+  margin-right: 1.3em;
+}
+
+#new-note-link {
+  display: block;
+  margin-right: 1.3em;
+}
+
+#text-area {
+  height: 7.25rem;
+  max-height: 8.25rem;
+  resize: none;
+  overflow-y:hidden;
+}
+
+#note-date {
+  margin-right: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+

@@ -1,16 +1,19 @@
-CATEGORY <%= @category.id %>
+<div class="d-flex flex-column justify-content-center align-items-center" id="category-show-wrapper">
+  <div class="card" style="width: 70rem; height: 40rem">
+    <div class="card-body">
+      <div id="card-header" class="d-flex flex-column justify-content-center align-items-center p-3">
+        <h2 class="card-title"><%= @category.created_at.strftime("%B %-d, %Y") %></h2>
+        <p class="card-text"><%= @category.updated_at.strftime(" Last update: %B %d, %Y at %I:%M %p") %></p>
+      </div>
+      <div class="d-flex align-items-center p-5" id="entry-content">
+        <p><%= @category.description %></p>
+      </div>
+    </div>
+  </div>
 
-<p style="color: green"><%= notice %></p>
-
-<%= render @category %>
-
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %>
-   |
-  <%= link_to "Back to category", categories_path %>
-   |
-  <%= link_to "Show Tasks", category_tasks_path(@category) %>
-</div>
-<div>
-  <%= button_to "Destroy this category", @category, method: :delete %>
+  <div class="d-flex justify-content-end p-3" style="width: 70rem">
+    <%= link_to "Edit", edit_category_path, id:"edit-entry-link" %>
+    <%= link_to "Show Notes", category_tasks_path(@category) %>
+  </div>
+  
 </div>
